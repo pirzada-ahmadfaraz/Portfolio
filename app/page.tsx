@@ -204,21 +204,21 @@ export default function PremiumPortfolio() {
       role: "Product Manager at TechCorp",
       image: "/placeholder.svg?height=80&width=80",
       quote:
-        "Alex's attention to detail and technical expertise is unmatched. The applications he builds are not just functional, but truly delightful to use.",
+        "Ahmad's attention to detail and technical expertise is unmatched. The applications he builds are not just functional, but truly delightful to use.",
     },
     {
       name: "Michael Chen",
       role: "CEO at StartupXYZ",
       image: "/placeholder.svg?height=80&width=80",
       quote:
-        "Working with Alex transformed our digital presence. His ability to translate complex ideas into beautiful, intuitive interfaces is remarkable.",
+        "Working with Ahmad transformed our digital presence. His ability to translate complex ideas into beautiful, intuitive interfaces is remarkable.",
     },
     {
       name: "Emily Rodriguez",
       role: "Design Director at CreativeStudio",
       image: "/placeholder.svg?height=80&width=80",
       quote:
-        "Alex bridges the gap between design and development perfectly. He understands both the creative vision and technical implementation.",
+        "Ahmad bridges the gap between design and development perfectly. He understands both the creative vision and technical implementation.",
     },
   ]
 
@@ -327,7 +327,7 @@ export default function PremiumPortfolio() {
                   <div className="relative w-80 h-80 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-2 transform group-hover:rotate-6 transition-transform duration-500">
                     <img
                       src="/images/profile.jpeg"
-                      alt="Alex - Frontend Developer"
+                      alt="Ahmad - Frontend Developer"
                       className="w-full h-full rounded-full object-cover bg-white shadow-2xl"
                     />
                   </div>
@@ -743,7 +743,7 @@ export default function PremiumPortfolio() {
                     </div>
                     <div>
                       <div className="font-semibold text-gray-900 dark:text-white">Email</div>
-                      <div className="text-gray-600 dark:text-gray-400">alex@example.com</div>
+                      <div className="text-gray-600 dark:text-gray-400">Ahmad@example.com</div>
                     </div>
                   </div>
 
@@ -762,7 +762,7 @@ export default function PremiumPortfolio() {
                   {[
                     { icon: Linkedin, href: "https://linkedin.com", color: "from-blue-600 to-blue-700" },
                     { icon: Github, href: "https://github.com", color: "from-gray-700 to-gray-800" },
-                    { icon: Mail, href: "mailto:alex@example.com", color: "from-red-500 to-red-600" },
+                    { icon: Mail, href: "mailto:Ahmad@example.com", color: "from-red-500 to-red-600" },
                   ].map((social, index) => {
                     const IconComponent = social.icon
                     return (
@@ -885,7 +885,7 @@ export default function PremiumPortfolio() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                Alex.dev
+                Ahmad.dev
               </div>
               <p className="text-gray-300 mb-8 text-lg">
                 Crafting digital experiences • Building the future, one line of code at a time
@@ -894,7 +894,7 @@ export default function PremiumPortfolio() {
                 {[
                   { icon: Linkedin, href: "https://linkedin.com" },
                   { icon: Github, href: "https://github.com" },
-                  { icon: Mail, href: "mailto:alex@example.com" },
+                  { icon: Mail, href: "mailto:Ahmad@example.com" },
                 ].map((social, index) => {
                   const IconComponent = social.icon
                   return (
@@ -912,7 +912,7 @@ export default function PremiumPortfolio() {
               </div>
               <div className="border-t border-gray-700/50 pt-8">
                 <p className="text-gray-400 flex items-center justify-center">
-                  Made with <Heart className="h-4 w-4 mx-2 text-red-400 animate-pulse" /> by Alex • © 2024 All rights
+                  Made with <Heart className="h-4 w-4 mx-2 text-red-400 animate-pulse" /> by Ahmad • © 2024 All rights
                   reserved
                 </p>
               </div>
