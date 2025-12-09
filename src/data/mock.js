@@ -62,6 +62,49 @@ export const mockData = {
       demoLink: "https://meet-vault.vercel.app",
       codeLink: "https://github.com/pirzada-ahmadfaraz/MeetVault",
       status: "Completed"
+    },
+    {
+      id: 3,
+      title: "PayFlow",
+      description: "A non-custodial Cardano payment gateway that enables merchants to accept cryptocurrency payments with shareable payment links, real-time tracking, and automatic stablecoin conversions.",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+      technologies: [
+        { name: "Next.js 14", icon: "⚡" },
+        { name: "TypeScript", icon: "📘" },
+        { name: "Supabase", icon: "🗄️" },
+        { name: "MeshJS", icon: "🔗" },
+        { name: "Cardano", icon: "💎" }
+      ],
+      features: [
+        "Non-custodial architecture",
+        "Real-time payment detection",
+        "Automatic ADA-to-stablecoin conversion",
+        "REST API with webhooks"
+      ],
+      codeLink: "https://github.com/pirzada-ahmadfaraz/PayFlow",
+      status: "Completed"
+    },
+    {
+      id: 4,
+      title: "Pingly",
+      description: "An uptime monitoring service that tracks website availability and performance, helping developers ensure their services stay online with real-time alerts and status dashboards.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      technologies: [
+        { name: "JavaScript", icon: "📜" },
+        { name: "Node.js", icon: "🟢" },
+        { name: "Express.js", icon: "🚀" },
+        { name: "React", icon: "⚛️" },
+        { name: "Vercel", icon: "▲" }
+      ],
+      features: [
+        "Real-time uptime monitoring",
+        "Status dashboards",
+        "Performance tracking",
+        "Alert notifications"
+      ],
+      demoLink: "https://pinglyy.vercel.app/",
+      codeLink: "https://github.com/pirzada-ahmadfaraz/Pingly",
+      status: "Completed"
     }
   ],
   skills: {
