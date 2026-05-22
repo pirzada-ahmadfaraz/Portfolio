@@ -195,7 +195,7 @@ const Skills = ({ data }) => {
                   variants={containerVariants}
                 >
                   {[
-                    { stat: '2+', label: 'Years Experience', delay: 0.2 },
+                    { stat: '7+', label: 'Years Experience', delay: 0.2 },
                     { stat: '15+', label: 'Projects Completed', delay: 0.4 },
                     { stat: '10+', label: 'Technologies Mastered', delay: 0.6 },
                     { stat: '100%', label: 'Satisfaction Rate', delay: 0.8 }
