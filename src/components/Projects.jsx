@@ -6,7 +6,7 @@ import { ExternalLink, Github, ArrowUpRight, ArrowLeft, ArrowRight } from 'lucid
 const Projects = ({ data }) => {
   const [current, setCurrent] = useState(0);
   const [imgError, setImgError] = useState({});
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
 
   const next = () => setCurrent((p) => (p + 1) % data.length);
   const prev = () => setCurrent((p) => (p - 1 + data.length) % data.length);

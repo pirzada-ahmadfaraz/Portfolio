@@ -17,13 +17,25 @@ const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Handle smooth scrolling
+  // Track mobile viewport — used to skip GPU-heavy scroll parallax
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
+
+  // Scroll parallax (desktop only — re-rendering on every scroll frame
+  // and moving large blurred elements is what janks mobile Safari)
+  useEffect(() => {
+    if (isMobile) return;
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile]);
 
   // Handle preloader
   useEffect(() => {
@@ -55,11 +67,11 @@ const Portfolio = () => {
               {/* soft monochrome light pools */}
               <div
                 className="absolute top-[-10%] right-[-5%] w-[44rem] h-[44rem] rounded-full bg-white/[0.04] blur-[120px]"
-                style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+                style={{ transform: isMobile ? undefined : `translateY(${scrollY * 0.15}px)` }}
               />
               <div
                 className="absolute bottom-[-10%] left-[-10%] w-[40rem] h-[40rem] rounded-full bg-white/[0.025] blur-[120px]"
-                style={{ transform: `translateY(${scrollY * -0.08}px)` }}
+                style={{ transform: isMobile ? undefined : `translateY(${scrollY * -0.08}px)` }}
               />
               {/* bottom vignette */}
               <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-gradient-to-t from-black to-transparent" />

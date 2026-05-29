@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { ArrowUp, ArrowUpRight } from 'lucide-react';
 
 const Footer = () => {
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
   const currentYear = new Date().getFullYear();
   const ease = [0.22, 1, 0.36, 1];
 

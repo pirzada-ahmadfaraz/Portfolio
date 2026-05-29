@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const About = ({ data }) => {
-  const { ref, inView } = useInView({ threshold: 0.25, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
 
   const phrases = [
     "crypto dApps",

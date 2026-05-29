@@ -9,7 +9,7 @@ const Contact = ({ data }) => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const { ref, inView } = useInView({ threshold: 0.12, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
   const ease = [0.22, 1, 0.36, 1];
 
   const handleInputChange = (e) => {

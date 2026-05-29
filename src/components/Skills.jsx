@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const Skills = ({ data }) => {
-  const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
   const ease = [0.22, 1, 0.36, 1];
 
   const rise = {
@@ -53,13 +53,19 @@ const Skills = ({ data }) => {
                 </div>
                 <div className="relative h-px bg-white/10 overflow-visible">
                   <motion.div
-                    className="absolute left-0 top-0 h-px bg-white"
-                    initial={{ width: 0 }}
-                    animate={inView ? { width: `${skill.level}%` } : {}}
+                    className="absolute left-0 top-0 h-px bg-white origin-left"
+                    style={{ width: `${skill.level}%` }}
+                    initial={{ scaleX: 0 }}
+                    animate={inView ? { scaleX: 1 } : {}}
                     transition={{ delay: 0.3 + i * 0.08, duration: 1.1, ease }}
-                  >
-                    <span className="absolute right-0 -top-[3px] h-[7px] w-[7px] rounded-full bg-white shadow-[0_0_12px_2px_rgba(255,255,255,0.5)]" />
-                  </motion.div>
+                  />
+                  <motion.span
+                    className="absolute -top-[3px] h-[7px] w-[7px] rounded-full bg-white shadow-[0_0_12px_2px_rgba(255,255,255,0.5)]"
+                    style={{ left: `calc(${skill.level}% - 3px)` }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: 0.3 + i * 0.08 + 1, duration: 0.3, ease }}
+                  />
                 </div>
               </motion.div>
             ))}

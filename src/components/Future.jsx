@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { ArrowUpRight } from 'lucide-react';
 
 const Future = ({ data }) => {
-  const { ref, inView } = useInView({ threshold: 0.12, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
   const ease = [0.22, 1, 0.36, 1];
 
   const rise = {
@@ -66,9 +66,10 @@ const Future = ({ data }) => {
                 <div className="mt-6 space-y-2">
                   <div className="relative h-px bg-white/10">
                     <motion.div
-                      className="absolute left-0 top-0 h-px bg-white"
-                      initial={{ width: 0 }}
-                      animate={inView ? { width: `${item.progress}%` } : {}}
+                      className="absolute left-0 top-0 h-px bg-white origin-left"
+                      style={{ width: `${item.progress}%` }}
+                      initial={{ scaleX: 0 }}
+                      animate={inView ? { scaleX: 1 } : {}}
                       transition={{ delay: 0.4 + i * 0.2, duration: 1.2, ease }}
                     />
                   </div>

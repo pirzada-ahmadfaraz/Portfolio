@@ -8,7 +8,7 @@ const Hero = ({ data }) => {
   const { scrollY } = useScroll();
   const yImg = useTransform(scrollY, [0, 500], [0, 80]);
 
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
   const typingText = useTyping(data.typingTexts || ["full-stack web apps"], 90, 1800);
 
   const ease = [0.22, 1, 0.36, 1];

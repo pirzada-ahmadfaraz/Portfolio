@@ -234,3 +234,20 @@ code {
         scroll-behavior: auto !important;
     }
 }
+
+/* ============================================================
+   Mobile performance guard
+   backdrop-filter (frosted glass) and animated full-screen grain
+   are the two most expensive effects on mobile Safari. We drop
+   them on small screens only — desktop keeps the full treatment.
+   ============================================================ */
+@media (max-width: 768px) {
+    .glass {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .grain::before {
+        animation: none;
+    }
+}
