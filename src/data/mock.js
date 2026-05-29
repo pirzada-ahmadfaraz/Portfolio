@@ -1,21 +1,21 @@
 export const mockData = {
   hero: {
     name: "Ahmad Faraz",
-    title: "Full-Stack Developer & ",
-    typingTexts: ["Python Enthusiast", "Crypto Explorer", "Blockchain Developer", "Web3 Builder"],
-    description: "An 18-year-old developer specializing in full-stack web development, with a deep passion for Crypto, Blockchain, and Web3.",
-    experiences: ["Digital Web Apps", "AI Bots", "Crypto DApps", "Blockchain DApps"],
+    title: "Full-Stack Developer",
+    typingTexts: ["full-stack web apps", "crypto & DeFi tools", "Web3 dApps", "real-time platforms"],
+    description: "I'm an 18-year-old developer from Bangalore who ships real products — crypto wallets, payment rails, and real-time platforms — with a deep pull toward blockchain and Web3.",
+    experiences: ["Web Apps", "Crypto Tools", "Web3 dApps", "APIs"],
     image: "/Profile.png"
   },
   about: {
     title: "About Me",
     experienceTypes: ["Digital Web Apps", "AI Bots", "Crypto DApps", "Blockchain Solutions"],
-    content: "Hello! I'm Ahmad Faraz, an 18-year-old developer with a strong foundation in full-stack web development, Python, and modern JavaScript frameworks. I build real products — from crypto wallets to video conferencing platforms.\n\nCurrently diving deep into Python programming while actively building in the Crypto, Blockchain, and Web3 space.\n\nLet's build the future together!",
+    content: "I build things for the web, and I've been writing code since I was a kid. Today that means full-stack work across React, Next.js, Node, and Python — and a growing focus on crypto, blockchain, and Web3.\n\nI care about products that actually ship and feel good to use: a non-custodial wallet, a payment gateway on Cardano, a video platform, an uptime monitor. Real things, in production.\n\nRight now I'm going deep on Python and smart contracts, and I'm always up for a hard problem.",
     stats: [
-      { label: "Projects Completed", value: "15+" },
-      { label: "Technologies Learned", value: "10+" },
-      { label: "Coding Experience", value: "7+ Years" },
-      { label: "GitHub Repos", value: "20+" }
+      { label: "Projects shipped", value: "15+" },
+      { label: "Years writing code", value: "7+" },
+      { label: "Core technologies", value: "10+" },
+      { label: "Public repos", value: "20+" }
     ]
   },
   projects: [
@@ -23,7 +23,7 @@ export const mockData = {
       id: 1,
       title: "Crypto Vault",
       description: "A secure web-based decentralized crypto wallet that enables users to manage their digital assets with enterprise-level security and an intuitive interface.",
-      image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80&auto=format&fit=crop",
       technologies: [
         { name: "Next.js 15", icon: "⚡" },
         { name: "TypeScript", icon: "📘" },
@@ -45,7 +45,7 @@ export const mockData = {
       id: 2,
       title: "Meet Vault",
       description: "A comprehensive video conferencing solution with advanced features like screen sharing, real-time chat, and seamless integration capabilities.",
-      image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80&auto=format&fit=crop",
       technologies: [
         { name: "Next.js 15", icon: "⚡" },
         { name: "WebRTC", icon: "📹" },
@@ -67,7 +67,7 @@ export const mockData = {
       id: 3,
       title: "PayFlow",
       description: "A non-custodial Cardano payment gateway that enables merchants to accept cryptocurrency payments with shareable payment links, real-time tracking, and automatic stablecoin conversions.",
-      image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=80&auto=format&fit=crop",
       technologies: [
         { name: "Next.js 14", icon: "⚡" },
         { name: "TypeScript", icon: "📘" },
@@ -88,7 +88,7 @@ export const mockData = {
       id: 4,
       title: "Pingly",
       description: "An uptime monitoring service that tracks website availability and performance, helping developers ensure their services stay online with real-time alerts and status dashboards.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
       technologies: [
         { name: "JavaScript", icon: "📜" },
         { name: "Node.js", icon: "🟢" },

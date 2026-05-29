@@ -1,210 +1,186 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { useTyping } from '../hooks/useTyping';
 
 const Hero = ({ data }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 300], [0, 50]);
-  const y2 = useTransform(scrollY, [0, 300], [0, 50]);
+  const yImg = useTransform(scrollY, [0, 500], [0, 80]);
 
-  const { ref, inView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true
-  });
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const typingText = useTyping(data.typingTexts || ["full-stack web apps"], 90, 1800);
 
-  const typingText = useTyping(data.typingTexts || ["Python Enthusiast"], 100, 2000);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const titleVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
+  const ease = [0.22, 1, 0.36, 1];
+  const rise = {
+    hidden: { opacity: 0, y: 28 },
+    visible: (i = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      transition: { duration: 0.9, ease, delay: 0.2 + i * 0.12 }
+    })
   };
 
+  const ticker = data.experiences || [];
+
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background elements removed */}
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center text-center lg:text-left">
-          {/* Content */}
-          <motion.div
-            className="space-y-6 sm:space-y-8 order-2 lg:order-1"
-            style={{ y: y1 }}
-            initial={{ opacity: 0, x: -100 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            {/* Greeting */}
+    <section
+      ref={ref}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16"
+    >
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* ---- Left: editorial copy ---- */}
+          <div className="lg:col-span-7 order-2 lg:order-1 text-center lg:text-left">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-neutral-400 text-base sm:text-lg tracking-wide"
-            >
-              Hello, I'm
-            </motion.div>
-
-            {/* Name with stagger animation */}
-            <motion.h1
-              className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-none"
-              variants={titleVariants}
+              custom={0}
+              variants={rise}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
+              className="flex items-center justify-center lg:justify-start gap-3 mb-7"
             >
-              {data.name.split('').map((letter, index) => (
-                <motion.span
-                  key={index}
-                  variants={letterVariants}
-                  className={letter === ' ' ? 'mr-2 sm:mr-4' : 'inline-block'}
-                  style={{
-                    color: index < 5 ? '#ffffff' : '#a3a3a3'
-                  }}
-                >
-                  {letter === ' ' ? '\u00A0' : letter}
-                </motion.span>
-              ))}
-            </motion.h1>
-
-            {/* Title */}
-            <motion.div
-              className="space-y-3 sm:space-y-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
-              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-neutral-300 tracking-wide">
-                <span className="block sm:inline">{data.title}</span>
-                <span className="text-white block sm:inline">
-                  {typingText}
-                  <span className="animate-pulse">|</span>
-                </span>
-              </h2>
-
-              {/* Animated underline */}
-              <motion.div
-                className="h-px bg-gradient-to-r from-white via-neutral-400 to-transparent mx-auto lg:mx-0 w-3/4 sm:w-full"
-                initial={{ scaleX: 0 }}
-                animate={inView ? { scaleX: 1 } : {}}
-                transition={{ delay: 1.2, duration: 1.5 }}
-                style={{ transformOrigin: "left" }}
-              />
+              <span className="h-px w-10 bg-white/40" />
+              <span className="font-mono-label text-[0.65rem] text-neutral-400">
+                Security Researcher · Full-Stack Dev
+              </span>
             </motion.div>
 
-            {/* Description */}
+            <motion.h1
+              custom={1}
+              variants={rise}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="font-display leading-[0.92] text-6xl sm:text-7xl md:text-8xl xl:text-[8.5rem]"
+            >
+              Ahmad
+              <br />
+              <span className="serif-italic text-neutral-400">Faraz</span>
+            </motion.h1>
+
+            <motion.div
+              custom={2}
+              variants={rise}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="mt-8 flex flex-col items-center lg:items-start gap-1.5"
+            >
+              <p className="text-lg sm:text-xl text-neutral-300 font-light">
+                I build{' '}
+                <span className="text-white border-b border-white/30 pb-0.5">
+                  {typingText}
+                  <span className="ml-0.5 inline-block w-px h-5 align-middle bg-white animate-pulse" />
+                </span>
+              </p>
+            </motion.div>
+
             <motion.p
-              className="text-sm sm:text-base lg:text-lg text-neutral-400 leading-relaxed max-w-xs sm:max-w-lg mx-auto lg:mx-0 font-light px-2 sm:px-0"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.4, duration: 0.8 }}
+              custom={3}
+              variants={rise}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="mt-6 max-w-md mx-auto lg:mx-0 text-sm sm:text-base text-neutral-400 leading-relaxed font-light"
             >
               {data.description}
             </motion.p>
 
-            {/* Social Links */}
             <motion.div
-              className="flex justify-center lg:justify-start space-x-4 sm:space-x-6 pt-6 sm:pt-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1.6, duration: 0.8 }}
+              custom={4}
+              variants={rise}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="mt-9 flex items-center justify-center lg:justify-start gap-4"
             >
-              {[
-                { Icon: Github, href: "https://github.com/pirzada-ahmadfaraz", external: true },
-                { Icon: Linkedin, href: "https://www.linkedin.com/in/pirzadaahmadfaraz/", external: true },
-                { Icon: Mail, href: "#contact", external: false }
-              ].map(({ Icon, href, external }, index) => (
-                <motion.a
-                  key={index}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                  className="p-2 sm:p-3 border border-white/20 rounded-full hover:border-white hover:bg-white/5 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
+              <button
+                onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group relative overflow-hidden rounded-full bg-white text-black px-7 py-3 font-mono-label text-[0.65rem]"
+              >
+                <span className="relative z-10">View Work</span>
+              </button>
 
-          {/* Image */}
+              <div className="flex items-center gap-2">
+                {[
+                  { Icon: Github, href: "https://github.com/pirzada-ahmadfaraz", external: true },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/in/pirzadaahmadfaraz/", external: true },
+                  { Icon: Mail, href: "#contact", external: false }
+                ].map(({ Icon, href, external }, index) => (
+                  <motion.a
+                    key={index}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    className="glass glass-hover flex h-11 w-11 items-center justify-center rounded-full text-neutral-300 hover:text-white"
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ---- Right: framed monochrome portrait ---- */}
           <motion.div
-            className="flex justify-center order-1 lg:order-2 lg:justify-end"
-            style={{ y: y2 }}
-            initial={{ opacity: 0, scale: 0.8 }}
+            className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end"
+            style={{ y: yImg }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease, delay: 0.3 }}
           >
             <div className="relative group">
-              {/* Outer glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-white/20 via-neutral-400/10 to-white/20 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-700" />
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                className="glass relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[28rem] rounded-[1.75rem] p-3 overflow-hidden"
+              >
+                <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900">
+                  <img
+                    src={data.image}
+                    alt="Ahmad Faraz"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+              </motion.div>
 
-              {/* Image container */}
-              <div className="relative w-48 h-48 xs:w-56 xs:h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-neutral-900 border border-white/10">
-                <motion.img
-                  src={data.image}
-                  alt="Ahmad Faraz"
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                />
-
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              {/* floating mono index */}
+              <div className="absolute -left-5 top-6 hidden lg:block font-mono-label text-[0.55rem] text-neutral-600 [writing-mode:vertical-rl] rotate-180">
+                Est. 2025 — Portfolio
               </div>
-
-              {/* Floating elements removed */}
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ---- Marquee ticker ---- */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 2, duration: 0.8 }}
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 1, duration: 1 }}
+        className="relative z-10 mt-16 border-y border-white/10 py-4 overflow-hidden"
       >
-        <motion.div
-          className="flex flex-col items-center space-y-2 cursor-pointer"
-          onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
-          whileHover={{ y: -2 }}
-        >
-          <span className="text-xs text-neutral-400 tracking-widest uppercase">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown className="w-4 h-4 text-neutral-400" />
-          </motion.div>
-        </motion.div>
+        <div className="flex w-max animate-marquee">
+          {[...ticker, ...ticker, ...ticker, ...ticker].map((item, i) => (
+            <span key={i} className="flex items-center font-display text-2xl sm:text-3xl text-neutral-500 whitespace-nowrap">
+              <span className="px-8">{item}</span>
+              <span className="text-white/30">✦</span>
+            </span>
+          ))}
+        </div>
       </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.button
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 1.4, duration: 0.8 }}
+      >
+        <span className="font-mono-label text-[0.55rem] text-neutral-500">Scroll</span>
+        <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+          <ArrowDown className="w-3.5 h-3.5 text-neutral-500" />
+        </motion.span>
+      </motion.button>
     </section>
   );
 };

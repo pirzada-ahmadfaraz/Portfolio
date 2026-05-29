@@ -38,9 +38,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Cursor follower removed */}
-
+    <div className="grain min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-white selection:text-black">
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0 }}
@@ -48,18 +46,23 @@ const Portfolio = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-          
+
           <main className="relative">
-            {/* Parallax background elements */}
+            {/* Atmospheric background */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
-              <div 
-                className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-neutral-800/10 to-neutral-700/10 rounded-full blur-3xl"
-                style={{ transform: `translateY(${scrollY * 0.2}px)` }}
+              {/* faint top grid */}
+              <div className="grid-bg absolute inset-x-0 top-0 h-[120vh]" />
+              {/* soft monochrome light pools */}
+              <div
+                className="absolute top-[-10%] right-[-5%] w-[44rem] h-[44rem] rounded-full bg-white/[0.04] blur-[120px]"
+                style={{ transform: `translateY(${scrollY * 0.15}px)` }}
               />
-              <div 
-                className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-neutral-700/5 to-neutral-600/5 rounded-full blur-3xl"
-                style={{ transform: `translateY(${scrollY * -0.1}px)` }}
+              <div
+                className="absolute bottom-[-10%] left-[-10%] w-[40rem] h-[40rem] rounded-full bg-white/[0.025] blur-[120px]"
+                style={{ transform: `translateY(${scrollY * -0.08}px)` }}
               />
+              {/* bottom vignette */}
+              <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-gradient-to-t from-black to-transparent" />
             </div>
 
             <Hero data={mockData.hero} />

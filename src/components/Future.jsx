@@ -1,183 +1,121 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Target, TrendingUp, BookOpen, Zap, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const Future = ({ data }) => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true
-  });
+  const { ref, inView } = useInView({ threshold: 0.12, triggerOnce: true });
+  const ease = [0.22, 1, 0.36, 1];
 
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
+  const rise = {
+    hidden: { opacity: 0, y: 26 },
+    visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.7, ease, delay: i * 0.08 } })
   };
 
   return (
-    <section id="future" className="py-16 sm:py-20 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-1/4 left-0 w-96 h-96 bg-gradient-to-br from-neutral-800/5 to-transparent rounded-full blur-3xl"
-          style={{ y }}
-        />
-      </div>
-
+    <section id="future" className="relative py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           ref={ref}
-          variants={containerVariants}
+          custom={0}
+          variants={rise}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          className="mb-14"
         >
-          {/* Section Header */}
-          <motion.div variants={itemVariants} className="mb-12 sm:mb-16 lg:mb-20 text-center lg:text-left">
-            <div className="max-w-4xl mx-auto lg:mx-0">
-              <div className="text-xs sm:text-sm text-neutral-400 tracking-widest uppercase mb-3 sm:mb-4">
-                Learning Path
-              </div>
-              <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-7xl font-light leading-tight mb-6 sm:mb-8">
-                Future{' '}
-                <span className="text-neutral-400">goals</span>
-              </h2>
-              <motion.div
-                className="h-px bg-gradient-to-r from-white via-neutral-600 to-transparent w-32 sm:w-40 mx-auto lg:mx-0"
-                initial={{ scaleX: 0 }}
-                animate={inView ? { scaleX: 1 } : {}}
-                transition={{ delay: 0.5, duration: 1.2 }}
-                style={{ transformOrigin: "left" }}
-              />
-            </div>
-          </motion.div>
-
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20">
-            {/* Currently Learning */}
-            <motion.div variants={itemVariants} className="space-y-8 sm:space-y-12">
-              <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4 mb-6 sm:mb-8">
-                <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                <h3 className="text-xl sm:text-2xl font-light text-white">Currently Learning</h3>
-              </div>
-
-              <div className="space-y-6 sm:space-y-8">
-                {data.currentlyLearning.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="group"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                  >
-                    <div className="relative bg-neutral-900/30 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 hover:bg-neutral-900/50 hover:border-white/20 transition-all duration-700">
-                      {/* Background glow */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl sm:rounded-2xl" />
-
-                      <div className="relative z-10 space-y-4 sm:space-y-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
-                          <h4 className="text-lg sm:text-xl font-light text-white group-hover:text-neutral-300 transition-colors duration-500 text-center sm:text-left">
-                            {item.name}
-                          </h4>
-                          <div className="flex items-center justify-center sm:justify-start space-x-2 px-3 py-1 bg-white/10 rounded-full border border-white/20 mx-auto sm:mx-0">
-                            <TrendingUp className="w-3 h-3 text-green-400" />
-                            <span className="text-green-400 text-sm font-medium">
-                              {item.progress}%
-                            </span>
-                          </div>
-                        </div>
-
-                        <p className="text-neutral-400 leading-relaxed font-light text-sm sm:text-base text-center sm:text-left">
-                          {item.description}
-                        </p>
-
-                        {/* Progress bar */}
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center text-xs sm:text-sm">
-                            <span className="text-neutral-500">Progress</span>
-                            <span className="text-neutral-400 font-medium">
-                              {item.timeframe}
-                            </span>
-                          </div>
-                          <div className="relative h-1.5 sm:h-2 bg-neutral-800 rounded-full overflow-hidden">
-                            <motion.div
-                              className="h-full bg-gradient-to-r from-green-500 via-green-400 to-green-300 rounded-full relative"
-                              initial={{ width: 0 }}
-                              animate={inView ? { width: `${item.progress}%` } : {}}
-                              transition={{
-                                delay: index * 0.3 + 0.8,
-                                duration: 1.5,
-                                ease: "easeOut"
-                              }}
-                            >
-                              {/* Glow effect */}
-                              <div className="absolute inset-0 bg-green-400/30 blur-sm rounded-full" />
-                            </motion.div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Future Interests */}
-            <motion.div variants={itemVariants} className="space-y-8 sm:space-y-12">
-              <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4 mb-6 sm:mb-8">
-                <Target className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                <h3 className="text-xl sm:text-2xl font-light text-white">Future Interests</h3>
-              </div>
-
-              <div className="space-y-4 sm:space-y-6">
-                {data.futureInterests.map((interest, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="group cursor-pointer"
-                    whileHover={{ x: 10 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                  >
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6 p-4 sm:p-6 bg-neutral-900/20 border border-white/5 rounded-xl hover:bg-neutral-900/40 hover:border-white/20 transition-all duration-500">
-                      <div className="text-2xl sm:text-3xl flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
-                        {interest.icon}
-                      </div>
-                      <div className="space-y-2 sm:space-y-3 flex-1 text-center sm:text-left">
-                        <div>
-                          <h4 className="text-base sm:text-lg font-light text-white group-hover:text-neutral-300 transition-colors duration-500">
-                            {interest.name}
-                          </h4>
-                        </div>
-                        <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed font-light">
-                          {interest.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-            </motion.div>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono-label text-[0.65rem] text-neutral-500">(04)</span>
+            <span className="font-mono-label text-[0.65rem] text-neutral-400">Learning Path</span>
           </div>
+          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-none">
+            What's <span className="serif-italic text-neutral-400">next</span>
+          </h2>
         </motion.div>
 
-        {/* Floating text element removed */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+          {/* Currently learning */}
+          <div className="lg:col-span-7 space-y-5">
+            <motion.div
+              custom={1}
+              variants={rise}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="font-mono-label text-[0.6rem] text-neutral-500"
+            >
+              Currently Learning
+            </motion.div>
+
+            {data.currentlyLearning.map((item, i) => (
+              <motion.div
+                key={item.name}
+                custom={i + 1}
+                variants={rise}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                className="glass glass-hover rounded-2xl p-6 sm:p-8"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-display text-2xl sm:text-3xl">{item.name}</h3>
+                  <span className="font-mono-label text-[0.6rem] text-neutral-400 whitespace-nowrap pt-1">
+                    {item.progress}%
+                  </span>
+                </div>
+                <p className="mt-4 text-sm sm:text-base text-neutral-400 font-light leading-relaxed">
+                  {item.description}
+                </p>
+                <div className="mt-6 space-y-2">
+                  <div className="relative h-px bg-white/10">
+                    <motion.div
+                      className="absolute left-0 top-0 h-px bg-white"
+                      initial={{ width: 0 }}
+                      animate={inView ? { width: `${item.progress}%` } : {}}
+                      transition={{ delay: 0.4 + i * 0.2, duration: 1.2, ease }}
+                    />
+                  </div>
+                  <div className="font-mono-label text-[0.55rem] text-neutral-600">
+                    {item.timeframe}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Future interests */}
+          <div className="lg:col-span-5 space-y-5">
+            <motion.div
+              custom={1}
+              variants={rise}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              className="font-mono-label text-[0.6rem] text-neutral-500"
+            >
+              On the Horizon
+            </motion.div>
+
+            {data.futureInterests.map((interest, i) => (
+              <motion.div
+                key={interest.name}
+                custom={i + 1}
+                variants={rise}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                whileHover={{ x: 6 }}
+                className="group flex items-center gap-4 border-b border-white/8 pb-5"
+              >
+                <span className="text-xl opacity-70 grayscale">{interest.icon}</span>
+                <div className="flex-1">
+                  <h4 className="text-base sm:text-lg font-light text-neutral-200 group-hover:text-white transition-colors">
+                    {interest.name}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-neutral-500 font-light mt-0.5">
+                    {interest.description}
+                  </p>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-neutral-600 opacity-0 group-hover:opacity-100 group-hover:text-white transition-all duration-300" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

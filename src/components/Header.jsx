@@ -53,48 +53,52 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
     <>
       <motion.header
-        className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-          scrolled 
-            ? 'bg-black/80 backdrop-blur-xl border-b border-white/10' 
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 w-full z-50"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          <div className="flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <div
+            className={`flex justify-between items-center rounded-full px-4 sm:px-6 py-3 transition-all duration-700 ${
+              scrolled
+                ? 'glass'
+                : 'bg-transparent border border-transparent'
+            }`}
+          >
             {/* Logo */}
-            <motion.div 
-              className="text-2xl font-light tracking-wider cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            <motion.button
+              className="flex items-center gap-2.5 cursor-pointer group"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400, damping: 12 }}
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <span className="text-white">Ahmad</span>
-              <span className="text-neutral-400 ml-2">Faraz</span>
-            </motion.div>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 font-display text-lg leading-none group-hover:border-white/60 transition-colors duration-500">
+                A
+              </span>
+              <span className="hidden sm:block font-mono-label text-[0.65rem] text-neutral-400 group-hover:text-white transition-colors duration-500">
+                Ahmad&nbsp;Faraz
+              </span>
+            </motion.button>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8 lg:space-x-12">
+            <nav className="hidden md:flex items-center gap-7 lg:gap-9">
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
                   <motion.button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
-                    className={`relative transition-colors duration-300 text-sm tracking-wide uppercase ${
-                      isActive ? 'text-white' : 'text-white/70 hover:text-white'
+                    className={`relative font-mono-label text-[0.65rem] transition-colors duration-300 ${
+                      isActive ? 'text-white' : 'text-white/50 hover:text-white'
                     }`}
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 10 }}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     {item.name}
                     <motion.div
-                      className="absolute -bottom-1 left-0 h-px bg-gradient-to-r from-white via-neutral-400 to-transparent"
+                      className="absolute -bottom-1.5 left-0 h-px bg-white"
                       initial={{ width: 0 }}
                       animate={{ width: isActive ? "100%" : 0 }}
                       whileHover={{ width: "100%" }}
@@ -131,36 +135,34 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-black z-40 md:hidden"
+            className="grain fixed inset-0 bg-[#050505]/95 backdrop-blur-2xl z-40 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <div className="flex flex-col items-center justify-center h-full gap-10">
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
                   <motion.button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
-                    className={`relative text-2xl transition-colors duration-300 tracking-wide uppercase ${
-                      isActive ? 'text-white' : 'text-white/70 hover:text-white'
-                    }`}
-                    initial={{ opacity: 0, y: 50 }}
+                    className="relative flex items-baseline gap-3"
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.5 }}
-                    whileHover={{ scale: 1.1 }}
+                    transition={{ delay: index * 0.08, duration: 0.5 }}
                   >
-                    {item.name}
-                    {isActive && (
-                      <motion.div
-                        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-px bg-gradient-to-r from-transparent via-white to-transparent"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
+                    <span className="font-mono-label text-[0.6rem] text-neutral-600">
+                      0{index + 1}
+                    </span>
+                    <span
+                      className={`font-display text-4xl transition-colors duration-300 ${
+                        isActive ? 'text-white serif-italic' : 'text-white/60'
+                      }`}
+                    >
+                      {item.name}
+                    </span>
                   </motion.button>
                 );
               })}

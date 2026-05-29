@@ -4,63 +4,53 @@ import { motion } from 'framer-motion';
 const Preloader = () => {
   return (
     <motion.div
-      className="fixed inset-0 bg-black flex items-center justify-center z-50"
+      className="grain fixed inset-0 bg-[#050505] flex flex-col items-center justify-center z-50 overflow-hidden"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
-      <div className="text-center">
+      <div className="grid-bg absolute inset-0 opacity-60" />
+
+      <div className="relative text-center px-6">
         <motion.div
-          className="relative mb-8"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          className="font-mono-label text-[0.65rem] text-neutral-500 mb-6"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="text-6xl font-light tracking-wider">
-            <span className="text-white">Ahmad</span>{' '}
-            <span className="text-neutral-400">Faraz</span>
-          </div>
-          <motion.div
-            className="h-px bg-gradient-to-r from-transparent via-white to-transparent mt-4"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          />
-        </motion.div>
-        
-        <motion.div
-          className="flex items-center justify-center space-x-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-        >
-          <div className="text-xs tracking-widest text-neutral-400 uppercase">
-            Developer Portfolio
-          </div>
+          Portfolio — 2026
         </motion.div>
 
-        {/* Loading dots */}
+        <motion.h1
+          className="font-display text-6xl sm:text-8xl leading-none"
+          initial={{ opacity: 0, filter: 'blur(12px)' }}
+          animate={{ opacity: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+        >
+          Ahmad <span className="serif-italic text-neutral-400">Faraz</span>
+        </motion.h1>
+
         <motion.div
-          className="flex justify-center mt-8 space-x-1"
+          className="mx-auto mt-8 h-px w-56 sm:w-72 bg-neutral-800 overflow-hidden"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          style={{ transformOrigin: 'left' }}
+        >
+          <motion.div
+            className="h-full w-1/3 bg-white"
+            animate={{ x: ['-100%', '300%'] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          />
+        </motion.div>
+
+        <motion.div
+          className="font-mono-label text-[0.6rem] text-neutral-600 mt-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
         >
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              className="w-2 h-2 bg-white rounded-full"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 1, 0.3]
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                delay: i * 0.2
-              }}
-            />
-          ))}
+          Full-Stack Developer
         </motion.div>
       </div>
     </motion.div>
