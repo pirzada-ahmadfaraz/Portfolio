@@ -2,7 +2,7 @@
 
 Personal portfolio of **Pirzada Ahmad Faraz** (Ahmad Faraz), an 18-year-old full-stack and Web3 developer from Bangalore, India. He builds and ships real products — crypto wallets, payment gateways, video platforms, and monitoring tools — with a focus on React, Node.js, and blockchain technology.
 
-**Live site:** [portfolio-iota-topaz-31.vercel.app](https://portfolio-iota-topaz-31.vercel.app)
+**Live site:** [www.pirzadaahmadfaraz.com](https://www.pirzadaahmadfaraz.com)
 
 ## Tech Stack
 

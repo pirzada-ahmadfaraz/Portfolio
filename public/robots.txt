@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-iota-topaz-31.vercel.app/sitemap.xml
+Sitemap: https://www.pirzadaahmadfaraz.com/sitemap.xml
