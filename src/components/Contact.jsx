@@ -106,15 +106,16 @@ const Contact = ({ data }) => {
 
             <div className="flex gap-3 pt-2">
               {[
-                { Icon: Github, href: "https://github.com/pirzada-ahmadfaraz" },
-                { Icon: Linkedin, href: "https://www.linkedin.com/in/pirzadaahmadfaraz" },
-                { Icon: Twitter, href: "https://x.com/pzahmadfaraz" }
+                { Icon: Github, href: "https://github.com/pirzada-ahmadfaraz", label: "GitHub profile" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/in/pirzadaahmadfaraz", label: "LinkedIn profile" },
+                { Icon: Twitter, href: "https://x.com/pzahmadfaraz", label: "X (Twitter) profile" }
               ].map((s, i) => (
                 <motion.a
                   key={i}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={s.label}
                   className="glass glass-hover flex h-12 w-12 items-center justify-center rounded-full text-neutral-400 hover:text-white"
                   whileHover={{ y: -3 }}
                 >
@@ -135,21 +136,21 @@ const Contact = ({ data }) => {
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 sm:p-8 space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label className="font-mono-label text-[0.55rem] text-neutral-500">Name</label>
-                  <input name="name" value={formData.name} onChange={handleInputChange} placeholder="Your name" className={inputClass} required />
+                  <label htmlFor="contact-name" className="font-mono-label text-[0.55rem] text-neutral-500">Name</label>
+                  <input id="contact-name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your name" className={inputClass} required />
                 </div>
                 <div className="space-y-2">
-                  <label className="font-mono-label text-[0.55rem] text-neutral-500">Email</label>
-                  <input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="you@example.com" className={inputClass} required />
+                  <label htmlFor="contact-email" className="font-mono-label text-[0.55rem] text-neutral-500">Email</label>
+                  <input id="contact-email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="you@example.com" className={inputClass} required />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="font-mono-label text-[0.55rem] text-neutral-500">Subject</label>
-                <input name="subject" value={formData.subject} onChange={handleInputChange} placeholder="What's this about?" className={inputClass} required />
+                <label htmlFor="contact-subject" className="font-mono-label text-[0.55rem] text-neutral-500">Subject</label>
+                <input id="contact-subject" name="subject" value={formData.subject} onChange={handleInputChange} placeholder="What's this about?" className={inputClass} required />
               </div>
               <div className="space-y-2">
-                <label className="font-mono-label text-[0.55rem] text-neutral-500">Message</label>
-                <textarea name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell me about your project, or just say hi." rows={5} className={`${inputClass} resize-none`} required />
+                <label htmlFor="contact-message" className="font-mono-label text-[0.55rem] text-neutral-500">Message</label>
+                <textarea id="contact-message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell me about your project, or just say hi." rows={5} className={`${inputClass} resize-none`} required />
               </div>
               <motion.button
                 type="submit"

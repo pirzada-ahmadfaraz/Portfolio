@@ -72,6 +72,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 12 }}
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Pirzada Ahmad Faraz — back to top"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 font-display text-lg leading-none group-hover:border-white/60 transition-colors duration-500">
                 A
@@ -82,7 +83,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
             </motion.button>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-7 lg:gap-9">
+            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-7 lg:gap-9">
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
@@ -114,6 +115,8 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
               className="md:hidden p-2 text-white flex items-center justify-center"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileTap={{ scale: 0.95 }}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -141,7 +144,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col items-center justify-center h-full gap-10">
+            <nav aria-label="Mobile navigation" className="flex flex-col items-center justify-center h-full gap-10">
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
@@ -166,7 +169,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
                   </motion.button>
                 );
               })}
-            </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

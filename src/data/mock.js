@@ -3,14 +3,14 @@ export const mockData = {
     name: "Ahmad Faraz",
     title: "Full-Stack Developer",
     typingTexts: ["full-stack web apps", "crypto & DeFi tools", "Web3 dApps", "real-time platforms"],
-    description: "I'm an 18-year-old developer from Bangalore who ships real products — crypto wallets, payment rails, and real-time platforms — with a deep pull toward blockchain and Web3.",
+    description: "I'm Pirzada Ahmad Faraz, an 18-year-old developer from Bangalore who ships real products — crypto wallets, payment rails, and real-time platforms — with a deep pull toward blockchain and Web3.",
     experiences: ["Web Apps", "Crypto Tools", "Web3 dApps", "APIs"],
-    image: "/Profile.png"
+    image: "/Profile.jpg"
   },
   about: {
     title: "About Me",
     experienceTypes: ["Digital Web Apps", "AI Bots", "Crypto DApps", "Blockchain Solutions"],
-    content: "I build things for the web, and I've been writing code since I was a kid. Today that means full-stack work across React, Next.js, Node, and Python — and a growing focus on crypto, blockchain, and Web3.\n\nI care about products that actually ship and feel good to use: a non-custodial wallet, a payment gateway on Cardano, a video platform, an uptime monitor. Real things, in production.\n\nRight now I'm going deep on Python and smart contracts, and I'm always up for a hard problem.",
+    content: "I'm Pirzada Ahmad Faraz — most people call me Ahmad. I build things for the web, and I've been writing code since I was a kid. Today that means full-stack work across React, Next.js, Node, and Python — and a growing focus on crypto, blockchain, and Web3.\n\nI care about products that actually ship and feel good to use: a non-custodial wallet, a payment gateway on Cardano, a video platform, an uptime monitor. Real things, in production.\n\nRight now I'm going deep on Python and smart contracts, and I'm always up for a hard problem.",
     stats: [
       { label: "Projects shipped", value: "15+" },
       { label: "Years writing code", value: "7+" },

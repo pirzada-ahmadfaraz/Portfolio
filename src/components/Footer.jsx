@@ -48,11 +48,11 @@ const Footer = () => {
           <div className="text-center sm:text-left order-2 sm:order-1">
             <div className="font-display text-xl">Ahmad <span className="serif-italic text-neutral-400">Faraz</span></div>
             <div className="font-mono-label text-[0.55rem] text-neutral-600 mt-2">
-              © {currentYear} — All rights reserved
+              © {currentYear} Pirzada Ahmad Faraz — All rights reserved
             </div>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-3 order-1 sm:order-2">
+          <nav aria-label="Footer navigation" className="flex flex-wrap justify-center gap-x-6 gap-y-3 order-1 sm:order-2">
             {links.map((l) => (
               <button
                 key={l.name}
@@ -70,6 +70,7 @@ const Footer = () => {
               className="glass glass-hover flex h-11 w-11 items-center justify-center rounded-full text-neutral-400 hover:text-white"
               whileHover={{ y: -3 }}
               title="Back to top"
+              aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />
             </motion.button>

@@ -26,6 +26,7 @@ const Hero = ({ data }) => {
   return (
     <section
       ref={ref}
+      aria-label="Introduction"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16"
     >
       <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full">
@@ -52,7 +53,7 @@ const Hero = ({ data }) => {
               animate={inView ? "visible" : "hidden"}
               className="font-display leading-[0.92] text-6xl sm:text-7xl md:text-8xl xl:text-[8.5rem]"
             >
-              Ahmad
+              <span className="sr-only">Pirzada </span>Ahmad
               <br />
               <span className="serif-italic text-neutral-400">Faraz</span>
             </motion.h1>
@@ -99,15 +100,16 @@ const Hero = ({ data }) => {
 
               <div className="flex items-center gap-2">
                 {[
-                  { Icon: Github, href: "https://github.com/pirzada-ahmadfaraz", external: true },
-                  { Icon: Linkedin, href: "https://www.linkedin.com/in/pirzadaahmadfaraz/", external: true },
-                  { Icon: Mail, href: "#contact", external: false }
-                ].map(({ Icon, href, external }, index) => (
+                  { Icon: Github, href: "https://github.com/pirzada-ahmadfaraz", external: true, label: "GitHub profile" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/in/pirzadaahmadfaraz/", external: true, label: "LinkedIn profile" },
+                  { Icon: Mail, href: "#contact", external: false, label: "Contact section" }
+                ].map(({ Icon, href, external, label }, index) => (
                   <motion.a
                     key={index}
                     href={href}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noopener noreferrer" : undefined}
+                    aria-label={label}
                     className="glass glass-hover flex h-11 w-11 items-center justify-center rounded-full text-neutral-300 hover:text-white"
                     whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.95 }}
@@ -136,7 +138,7 @@ const Hero = ({ data }) => {
                 <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900">
                   <img
                     src={data.image}
-                    alt="Ahmad Faraz"
+                    alt="Pirzada Ahmad Faraz — Full-Stack Developer from Bangalore"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 </div>
