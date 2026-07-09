@@ -224,6 +224,21 @@ export const mockData = {
         codeLink: "https://github.com/pirzada-ahmadfaraz"
       },
       {
+        name: "SAAF",
+        event: "Economic Times AI Hackathon 2026",
+        track: "Problem #5 — Urban Air Quality",
+        year: "2026",
+        description: "Smart Air-quality Action & Forecasting — an enforcement 'system of record' that turns pollution signals into a ranked queue of named-emitter cases, runs each through an officer workflow, and generates RAG-grounded, notice-ready evidence packs backed by an append-only outcomes ledger.",
+        highlights: [
+          "Case workflow: open → inspect → notice → resolve",
+          "RAG-grounded evidence packs in seconds",
+          "Live OpenAQ data + append-only ledger"
+        ],
+        tech: ["FastAPI", "React", "PostgreSQL", "RAG / LLM", "Docker"],
+        result: "ET AI Hackathon 2026",
+        codeLink: null
+      },
+      {
         name: "ClearLane",
         event: "INDIA.RUNS Ideathon",
         track: "Track 3 — Everyday AI Innovator",
