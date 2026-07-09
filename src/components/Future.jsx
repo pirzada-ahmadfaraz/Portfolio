@@ -24,7 +24,7 @@ const Future = ({ data }) => {
           className="mb-14"
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono-label text-[0.65rem] text-neutral-500">(04)</span>
+            <span className="font-mono-label text-[0.65rem] text-neutral-500">(06)</span>
             <span className="font-mono-label text-[0.65rem] text-neutral-400">Learning Path</span>
           </div>
           <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-none">

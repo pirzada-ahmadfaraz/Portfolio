@@ -5,6 +5,8 @@ import Header from './Header';
 import Hero from './Hero';
 import About from './About';
 import Projects from './Projects';
+import Security from './Security';
+import Hackathons from './Hackathons';
 import Skills from './Skills';
 import Future from './Future';
 import Contact from './Contact';
@@ -80,6 +82,8 @@ const Portfolio = () => {
             <Hero data={mockData.hero} />
             <About data={mockData.about} />
             <Projects data={mockData.projects} />
+            <Security data={mockData.security} />
+            <Hackathons data={mockData.hackathons} />
             <Skills data={mockData.skills} />
             <Future data={mockData.future} />
             <Contact data={mockData.contact} />

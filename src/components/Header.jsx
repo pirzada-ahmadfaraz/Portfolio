@@ -9,8 +9,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Security', href: '#security' },
+    { name: 'Hackathons', href: '#hackathons' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Future', href: '#future' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -83,7 +84,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => {
             </motion.button>
 
             {/* Desktop Navigation */}
-            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-7 lg:gap-9">
+            <nav aria-label="Main navigation" className="hidden md:flex items-center gap-5 lg:gap-8">
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (

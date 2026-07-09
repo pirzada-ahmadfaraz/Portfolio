@@ -6,11 +6,11 @@ const About = ({ data }) => {
   const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '0px 0px -10% 0px', triggerOnce: true });
 
   const phrases = [
+    "real products",
+    "security tools",
     "crypto dApps",
-    "web3 solutions",
-    "blockchain apps",
-    "smart contracts",
-    "DeFi platforms"
+    "native apps",
+    "AI agents"
   ];
   const [idx, setIdx] = useState(0);
 

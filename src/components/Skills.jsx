@@ -23,7 +23,7 @@ const Skills = ({ data }) => {
           className="mb-14"
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono-label text-[0.65rem] text-neutral-500">(03)</span>
+            <span className="font-mono-label text-[0.65rem] text-neutral-500">(05)</span>
             <span className="font-mono-label text-[0.65rem] text-neutral-400">Expertise</span>
           </div>
           <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-none">
